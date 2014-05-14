@@ -97,7 +97,6 @@ int main(int argc , char *argv[]){
         return 1;
     }
     
-
     tentativasDisparo = 0;
     pthread_t processaResposta;
     pthread_create(&processaResposta, NULL, threadRecebeResposta, (void *)&aviao);

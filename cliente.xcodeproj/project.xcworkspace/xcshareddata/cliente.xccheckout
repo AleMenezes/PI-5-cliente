@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>CA828D33-553B-4130-BB92-1033FE2D0358</string>
+	<key>IDESourceControlProjectName</key>
+	<string>cliente</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D03A8D08-96D6-484F-AD57-A63EDF64B229</key>
+		<string>https://github.com/AleMenezes/PI-5-cliente.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>cliente.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D03A8D08-96D6-484F-AD57-A63EDF64B229</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AleMenezes/PI-5-cliente.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D03A8D08-96D6-484F-AD57-A63EDF64B229</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D03A8D08-96D6-484F-AD57-A63EDF64B229</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PI-5-cliente</string>
+		</dict>
+	</array>
+</dict>
+</plist>
