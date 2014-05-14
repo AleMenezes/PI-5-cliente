@@ -25,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F6164A20191168520079E7A8 /* structsBalistica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = structsBalistica.h; sourceTree = "<group>"; };
 		F6FDCFCE18D3CFC1001E76BB /* cliente */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cliente; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6FDCFD118D3CFC1001E76BB /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		F6FDCFD318D3CFC1001E76BB /* cliente.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cliente.1; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				F6FDCFD118D3CFC1001E76BB /* main.c */,
+				F6164A20191168520079E7A8 /* structsBalistica.h */,
 				F6FDCFD318D3CFC1001E76BB /* cliente.1 */,
 			);
 			path = cliente;
@@ -225,6 +227,7 @@
 				F6FDCFD918D3CFC1001E76BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
