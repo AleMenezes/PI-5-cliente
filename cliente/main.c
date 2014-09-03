@@ -49,7 +49,7 @@ sem_t semaforo;
 
 int abreComunicacao();
 int quadranteRelativoXY(Posicao *referencia, Posicao *objeto);
-void setDirecao(Objeto* voador, Posicao* alvo, double speed);
+void setDirecao(Objeto* voador, Posicao* alvo, double speed, double *alpha);
 void *threadRecebeResposta (void *p);
 void printPosicao(Posicao *pos);
 void printVelocidade(Vetor *vel);
@@ -82,7 +82,7 @@ int main(int argc , char *argv[]){
     double velocidadeAviao = (double) ( (rand()%101 + 300)/3.6) ; //V aleatoria entre 300-400 km/h, convertida para m/s
     aviao.voando = true;
     
-    setDirecao(&aviao, &centro ,velocidadeAviao); //direciona o aviao ao alvo, no caso o proprio radar
+    setDirecao(&aviao, &centro ,velocidadeAviao, NULL); //direciona o aviao ao alvo, no caso o proprio radar
     printf("quadrante %d\n", quadranteRelativoXY(&aviao.pos, &centro));
     fflush(stdout);
     printVelocidade(&aviao.velocidade);
@@ -205,7 +205,10 @@ void *threadRecebeResposta (void *p){
             projetil[tentativasDisparo].pos.z = zCanhao;
             
             double velXY = disparo.velDisparo*cos(disparo.elevacao);
-            setDirecao(&projetil[tentativasDisparo], &aviao->pos, velXY);
+
+            
+            //setDirecao(&aviao, &centro ,velocidadeAviao, NULL);
+            setDirecao(&projetil[tentativasDisparo], &aviao->pos, velXY, &disparo.azinute);
             projetil[tentativasDisparo].velocidade.z = disparo.velDisparo* sin(disparo.elevacao);
             //printVelocidade(&projetil[tentativasDisparo].velocidade);
             instanteDisparo[tentativasDisparo] = disparo.instante;
@@ -220,29 +223,21 @@ void *threadRecebeResposta (void *p){
     pthread_exit(NULL);
 }
 
-int abreComunicacao(){
-    //Create socket
-    sock = socket(AF_INET , SOCK_STREAM , 0);
-    if (sock == -1){
-        printf("Could not create socket");
-        return 1;
-    }
-    puts("Socket created");
+void setDirecao(Objeto* voador, Posicao* alvo, double speed, double *alpha){
+    double angulo;
     
-    server.sin_addr.s_addr = inet_addr(ipAconectar);
-    server.sin_family = AF_INET;
-    server.sin_port = htons( porta );
-    if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0){
-        perror("connect failed. Error");
-        return 1;
+    if(alpha == NULL){
+        angulo = atan( fabs(voador->pos.y - alvo->y)/ fabs(voador->pos.x - alvo->x) );
     }
-    puts("Connected\n");
-    return 0;
-}
-
-void setDirecao(Objeto* voador, Posicao* alvo, double speed){
-    //direcao  = angulo => (vel.x, vel.x)
-    double angulo = atan( fabs(voador->pos.y - alvo->y)/ fabs(voador->pos.x - alvo->x) );
+    else{
+        printf("azinute: %0.1f\n", (*alpha));
+        fflush(stdout);
+        angulo = (*alpha) - M_PI/2;
+        printf("azinute convertido: %0.1f\n", angulo);
+        fflush(stdout);
+        sleep(30);
+    }
+    
     
     //int quadrante = quadranteRelativoXY(&voador->pos, alvo);
     switch ( quadranteRelativoXY(&voador->pos, alvo) ) { //switch (quadrante){
@@ -310,3 +305,23 @@ void printVelocidade(Vetor *vel){
     fflush(stdout);
 }
 
+
+int abreComunicacao(){
+    //Create socket
+    sock = socket(AF_INET , SOCK_STREAM , 0);
+    if (sock == -1){
+        printf("Could not create socket");
+        return 1;
+    }
+    puts("Socket created");
+    
+    server.sin_addr.s_addr = inet_addr(ipAconectar);
+    server.sin_family = AF_INET;
+    server.sin_port = htons( porta );
+    if (connect(sock , (struct sockaddr *)&server , sizeof(server)) < 0){
+        perror("connect failed. Error");
+        return 1;
+    }
+    puts("Connected\n");
+    return 0;
+}
